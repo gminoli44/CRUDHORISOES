@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+     
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h2>Docentes</h2>
+            
+            <h:form>
+                <h:dataTable value="">
+                    <h:column>
+                        Documento<h:inputText value="#{docentes.doc_documento}"></h:inputText>
+                    </h:column>
+                    <h:column>
+                        Nombres<h:inputText value="#{docentes.doc_nombres}"></h:inputText>
+                    </h:column>
+                    <h:column>
+                        Apellidos<h:inputText value="#{docentes.doc_apellidos}"></h:inputText>
+                    </h:column>
+                    <h:column>
+                        Correo<h:inputText value="#{docentes.doc_correo}"></h:inputText>
+                    </h:column>
+                    <h:column>
+                        Tipo Contrato
+                        <h:selectOneMenu value = "#{docentes.doc_tipocontrato}"> 
+                            <f:selectItem itemValue = "1" itemLabel = "Prestación de Servicios" /> 
+                            <f:selectItem itemValue = "2" itemLabel = "Termino Indefinido" /> 
+                            <f:selectItem itemValue = "3" itemLabel = "Catedra" /> 
+                           
+                        </h:selectOneMenu> 	
+                    </h:column>
+                    <h:column>
+                        <h:selectOneMenu value="#{docentes.doc_programa}">                     
+                            <f:selectItems value="#{programa.items_id}"/>
+                        </h:selectOneMenu>
+                    </h:column>
+                    
+                </h:dataTable>
+                <h:commandButton value="Agregar Docente" action="#{docentes.add_doc()}"></h:commandButton>
+                <h:commandButton value="Atras" action="#{docentes.go_back()}"></h:commandButton>
+            </h:form>
+            <br></br>
+            <h:form>
+                <h:dataTable value="#{docentes.get_all_doc}" var="doc">
+                 <h:column>
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{doc.doc_id}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Documento</f:facet>
+                    <h:outputText value="#{doc.doc_documento}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombres</f:facet>
+                    <h:outputText value="#{doc.doc_nombres}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Apellidos</f:facet>
+                    <h:outputText value="#{doc.doc_apellidos}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Correo</f:facet>
+                    <h:outputText value="#{doc.doc_correo}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tipo Contrato</f:facet>
+                    <h:outputText value="#{doc.doc_tipocontrato}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Programa</f:facet>
+                    <h:outputText value="#{doc.doc_programa}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Editar</f:facet>
+                    <h:commandButton value="Editar" action="#{doc.edit_Doc()}">
+                        <f:param name="action" value="#{doc.doc_id}"/>
+                    </h:commandButton>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Eliminar</f:facet>
+                    <h:commandButton value="Delete" action="#{doc.delete_Doc()}">
+                        <f:param name="action" value="#{doc.doc_id}"/>
+                    </h:commandButton>
+                </h:column>
+                
+            </h:dataTable>
+            </h:form>
+        </center>
+    </h:body>
+</html>
+
